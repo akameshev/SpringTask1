@@ -1,6 +1,7 @@
 package org.homework;
 
 import com.google.gson.annotations.SerializedName;
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -62,6 +63,19 @@ public class Person implements Serializable {
                 .append("firstname" + firstName)
                 .append("lastName" + lastName)
                 .append("age" + age).toString();
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Person person = (Person) obj;
+
+        return new EqualsBuilder()
+                .append(age, person.age)
+                .append(firstName, person.firstName)
+                .append(lastName, person.lastName)
+                .isEquals();
     }
 
     @Override
